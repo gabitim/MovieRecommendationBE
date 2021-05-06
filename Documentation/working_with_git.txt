@@ -1,0 +1,27 @@
+Pentru a adauga modificarile curente la commit-ul anterior
+git add -A . && git commit --amend --no-edit && git push --force-with-lease
+
+Create new branch on up to date master
+git checkout main && git pull --all && git checkout -b new-awesome-feature
+ 
+2 people on same branch
+To pull, always use --rebase. This will pull the remote changes and put your changes "on top"
+git pull --rebase
+ 
+To push, make sure you're up to date
+git pull --rebase && git push
+ 
+If force is needed, use --force-with-lease. This will ensure you can't overwrite peer changes.
+git push --force-with-lease
+ 
+If new changes are merged into master and you need them DO NOT MERGE FROM MASTER - it creates weird graphs where changes get lost. Instead rebase:
+git checkout main && git pull --all && git checkout new-awesome-feature && git rebase main
+ 
+Commits:
+	are meaningful
+	are useful 
+	are written in present tense
+	describe WHAT changes
+	do not include WHY or HOW it change
+
+
