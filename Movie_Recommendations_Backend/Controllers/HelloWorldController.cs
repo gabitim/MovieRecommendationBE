@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,17 +10,20 @@ namespace Movie_Recommendations_Backend.Controllers
     public class HelloWorldController : Controller
     {
         // GET: HelloWorld
-        public string Index()
+        public ViewResult Index()
         {
-            return "This is my default action...";
+            return View();
         }
 
         // 
         // GET: /HelloWorld/Welcome/ 
 
-        public string Welcome(string name, int numTimes = 1)
+        public ViewResult Welcome(string name, int numTimes = 1)
         {
-            return $"Hello {name}, NumTimes is: {numTimes}";
+            ViewData["Message"] = "Hello " + name;
+            ViewData["NumTimes"] = numTimes;
+
+            return View();
         }
     }
 }
