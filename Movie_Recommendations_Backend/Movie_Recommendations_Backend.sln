@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movie_Recommendations_Backend", "Movie_Recommendations_Backend.csproj", "{58CF5AD5-D724-4EAE-A8F0-C19C775709FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58CF5AD5-D724-4EAE-A8F0-C19C775709FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58CF5AD5-D724-4EAE-A8F0-C19C775709FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58CF5AD5-D724-4EAE-A8F0-C19C775709FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58CF5AD5-D724-4EAE-A8F0-C19C775709FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE0CD91D-3D28-41FE-A621-24FFC008E7B8}
+	EndGlobalSection
+EndGlobal
