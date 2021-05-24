@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace MoviesRecommandtions.Controllers
 {
@@ -20,15 +22,40 @@ namespace MoviesRecommandtions.Controllers
 
         private readonly ApplicationDbContext _context;
 
-        public HomeController(ApplicationDbContext context, ILogger<HomeController> logger)
+        private readonly UserManager<UserPreferences> _userManager;
+
+        public HomeController(ApplicationDbContext context, ILogger<HomeController> logger, UserManager<UserPreferences> userManager)
         {
             _logger = logger;
             _context = context;
+            _userManager = userManager;
         }
 
+       
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.ToListAsync());
+            List<Movie> movies = new List<Movie>();
+            var userDetails = await _userManager.GetUserAsync(User);
+
+            if (userDetails != null)
+            {
+                var favouritveGenres = userDetails.Preferences.Split(",");
+                List<List<Movie>> listOfLists = new List<List<Movie>>();
+                for (int i = 0; i < favouritveGenres.Length; i++)
+                {
+                    List<Movie> moviesFromOneGenre = new List<Movie>();
+                    moviesFromOneGenre = await _context.Movie.Where(movie => movie.Category.Contains(favouritveGenres[i])).ToListAsync();
+                    listOfLists.Add(moviesFromOneGenre);
+                }
+                movies = listOfLists.SelectMany(movie => movie).ToList();
+            }
+            else
+            {
+                movies = await _context.Movie.ToListAsync();
+            }
+
+
+            return View(movies);
         }
 
         public IActionResult Privacy()
