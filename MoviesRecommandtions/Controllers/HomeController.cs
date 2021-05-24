@@ -36,6 +36,20 @@ namespace MoviesRecommandtions.Controllers
             return View();
         }
 
+        //Get filtered Movies in index 
+        public async Task<IActionResult> ShowSearchResults(String SearchMovieName, String SearchWith)
+        {
+            if (SearchWith.Equals("Name"))
+            {
+                return View("Index", await _context.Movie.Where(m => m.Name.Contains(SearchMovieName)).ToListAsync());
+            }
+            else if (SearchWith.Equals("Genre"))
+            {
+                return View("Index", await _context.Movie.Where(m => m.Category.Contains(SearchMovieName)).ToListAsync());
+            }
+            return View("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
