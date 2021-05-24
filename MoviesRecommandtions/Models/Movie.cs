@@ -18,8 +18,8 @@ namespace MoviesRecommandtions.Models
         public string Name { get; set; }
         [Required]
         public string About { get; set; }
+        public int Rating { get; set; }
 
         public string Category { get; set; }
-        public enum ECategory { Action = 0, Adventure = 1, Horror = 2, Drama = 3, Romance = 4, Comedy = 5 }
     }
 }

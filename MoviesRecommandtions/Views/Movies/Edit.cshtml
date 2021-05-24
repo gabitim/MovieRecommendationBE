@@ -10,13 +10,12 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Banner" class="control-label"></label>
-                <input asp-for="Banner" class="form-control" />
-                <span asp-validation-for="Banner" class="text-danger"></span>
+                <input asp-for="Banner" type="file" name="files">
             </div>
             <div class="form-group">
                 <label asp-for="MovieLink" class="control-label"></label>
@@ -39,7 +38,12 @@
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
             </div>
         </form>
     </div>

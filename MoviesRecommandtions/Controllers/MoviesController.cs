@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -65,6 +67,7 @@ namespace MoviesRecommandtions.Controllers
         }
 
         // GET: Movies/Create
+        //[Authorize]
         public IActionResult Create()
         {
             return View();
@@ -73,12 +76,27 @@ namespace MoviesRecommandtions.Controllers
         // POST: Movies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MovieLink,Name,About,Category")] Movie movie)
+        public async Task<IActionResult> Create(/*[Bind("Id,Banner,MovieLink,Name,About,Category")] */Movie movie)
         {
             if (ModelState.IsValid)
             {
+                var files = HttpContext.Request.Form.Files;
+                if (files.Count() > 0)
+                {
+                    byte[] p1 = null;
+                    using (var fs1 = files[0].OpenReadStream())
+                    {
+                        using (var ms1 = new MemoryStream())
+                        {
+                            fs1.CopyTo(ms1);
+                            p1 = ms1.ToArray();
+                        }
+                    }
+                    movie.Banner = p1;
+                }
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,6 +105,7 @@ namespace MoviesRecommandtions.Controllers
         }
 
         // GET: Movies/Edit/5
+        //[Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -105,9 +124,10 @@ namespace MoviesRecommandtions.Controllers
         // POST: Movies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Banner,MovieLink,Name,About,Category")] Movie movie)
+        public async Task<IActionResult> Edit(int id, Movie movie)
         {
             if (id != movie.Id)
             {
@@ -118,6 +138,20 @@ namespace MoviesRecommandtions.Controllers
             {
                 try
                 {
+                    var files = HttpContext.Request.Form.Files;
+                    if (files.Count() > 0)
+                    {
+                        byte[] p1 = null;
+                        using (var fs1 = files[0].OpenReadStream())
+                        {
+                            using (var ms1 = new MemoryStream())
+                            {
+                                fs1.CopyTo(ms1);
+                                p1 = ms1.ToArray();
+                            }
+                        }
+                        movie.Banner = p1;
+                    }
                     _context.Update(movie);
                     await _context.SaveChangesAsync();
                 }
@@ -138,6 +172,7 @@ namespace MoviesRecommandtions.Controllers
         }
 
         // GET: Movies/Delete/5
+        //[Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -156,6 +191,7 @@ namespace MoviesRecommandtions.Controllers
         }
 
         // POST: Movies/Delete/5
+        //[Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

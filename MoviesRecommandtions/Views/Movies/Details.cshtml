@@ -10,34 +10,38 @@
     <h4>Movie</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Banner)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Banner)
+        <dd class="col-sm-10">
+            @{
+                var base64 = Convert.ToBase64String(Model.Banner);
+                var imgsrc = string.Format("data:image/jpg; base64, {0}", base64);
+            }
+            <img src="@imgsrc" width="200px" height="260px" />
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.MovieLink)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MovieLink)
+        <dd class="col-sm-10">
+            <iframe src="@Model.MovieLink" width="900px" height="550px"></iframe>
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.About)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.About)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Category)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Category)
         </dd>
     </dl>
