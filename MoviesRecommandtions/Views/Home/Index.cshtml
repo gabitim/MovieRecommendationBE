@@ -5,9 +5,9 @@
 }
 <form class="text-center" asp-action="Index" method="get">
     <p>
-        Movie Name: <input class="searchbar" type="search" placeholder="Search your Movies..." value="@ViewData["GetMovies"]" name="MovieSearch" style="width:500px" />
+        <input class="searchbar" type="search" placeholder="Search your Movies..." value="@ViewData["GetMovies"]" name="MovieSearch" style="width:500px" />
         <button class="btn btn-danger" type="search" value="search">Search</button>
-        <a asp-action="Index"><i class="fas fa-close"></i></a>
+        <a asp-action="Index"><i class="fa fa-close"></i></a>
     </p>
 </form>
 <h1>All Movies </h1>
