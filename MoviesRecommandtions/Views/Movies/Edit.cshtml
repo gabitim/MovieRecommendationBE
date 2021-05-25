@@ -14,32 +14,32 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Banner" class="control-label"></label>
-                <input asp-for="Banner" type="file" name="files">
+                <label asp-for="Banner" class="control-label">Thumbnail</label>
+                <input asp-for="Banner" type="file" name="files" >
             </div>
             <div class="form-group">
                 <label asp-for="MovieLink" class="control-label"></label>
-                <input asp-for="MovieLink" class="form-control" />
+                <input asp-for="MovieLink" class="form-control" required />
                 <span asp-validation-for="MovieLink" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control" required />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="About" class="control-label"></label>
-                <input asp-for="About" class="form-control" />
+                <input asp-for="About" class="form-control" required />
                 <span asp-validation-for="About" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
+                <input asp-for="Category" class="form-control" required />
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
+                <input asp-for="Rating" class="form-control" required />
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
