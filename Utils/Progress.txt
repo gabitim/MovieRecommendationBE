@@ -1,0 +1,17 @@
+Lupusoru Alexandru:
+	- Sql Server Setup
+	- Partea de view (front-end) pentru User Login, Register
+	- Accesul la Sql Server in ApplicationDbContext si maparea la entitati
+	- Dark Theme
+	
+Hartan Silviu Mihai:
+	- Add a movie, Byte Stream
+	- Movie Controller
+	- Movie Model
+	- Error Model
+
+Timofti Gabriel:
+	- Project Init
+	- Home Controller
+	- Partea de view (front-end) pentru movies, home
+	- Extinderea Clasei IdentityUser, pentru a adauga proprietatea suplimentara Modelului User
